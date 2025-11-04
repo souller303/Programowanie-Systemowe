@@ -1,11 +1,19 @@
-USER = $(shell whoami)
-DATE = $(shell date +%s)
-FILE = $(USER).$(DATE)
+DIR := build
+TARGET := hello
+FILE := hello.c
+SRC := SRC
+CC := gcc
 
-all:
-	touch $(FILE)
+all: $(DIR) $(TARGET)
+
+$(TARGET): hello.o $(DIR)
+	$(CC) $(DIR)/hello.o -o $(DIR)/$(TARGET)
+
+hello.o: $(DIR)
+	$(CC) -c $(SRC)/$(FILE) -o $(DIR)/hello.o
 
 clean:
-	rm $(USER).*
+	rm -rf build
 
-
+$(DIR):
+	mkdir $(DIR)
