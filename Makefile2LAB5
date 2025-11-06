@@ -1,0 +1,8 @@
+SRC_DIR := SRC
+BUILD_DIR := build
+SRC := $(wildcard $(SRC_DIR)/*.c)
+OBJ := $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRC))
+
+all:
+	echo $(SRC)
+	echo $(OBJ)
